@@ -25,3 +25,5 @@ Manifest.toml
 
 *.ok
 *.log
+*.bin
+*.hdr
