@@ -1,0 +1,87 @@
+module PSRIO
+
+using LazyArtifacts
+
+import Base.run 
+
+@static if VERSION < v"0.7"
+    const Nothing = Void
+end
+
+struct Pointer
+    path::String
+
+    function Pointer(psrio_distribution_path::String)
+        path = abspath(joinpath(psrio_distribution_path, Sys.iswindows() ? "psrio.exe" : "psrio.sh"))
+        return new(path)
+    end
+
+    function Pointer()
+        return new("")
+    end
+end
+
+function version(;path::AbstractString = path())
+    return strip(open(f->read(f, String), joinpath(path, "psrio.ver")))
+end
+
+function path()
+    return normpath(artifact"PSRIO")
+end
+
+function create(;path::AbstractString = path())::Pointer
+    return Pointer(path)
+end
+
+function set_executable_chmod(mode::Integer; path::AbstractString = path())
+    # Change permission of psrio.exe
+    if Sys.iswindows()
+        path_exec = joinpath(path, "psrio.exe")
+        chmod(path_exec, mode)
+    else
+        @warn("set_executable_chmod is not implemented for linux.")
+    end
+    return
+end
+
+run(psrio::Pointer, case::String; kwargs...) = run(psrio, [case]; kwargs...)
+function run(psrio::Pointer, cases::Vector{String}; 
+    recipes::Vector{String}=Vector{String}(), 
+    command::AbstractString="", 
+    model::AbstractString="", 
+    csv::Bool=false, 
+    verbose::Integer=1, 
+    output_path::String="", 
+    index_path::String="", 
+    selected_outputs_only::Bool=false, 
+    magent::Bool=false,
+    avid::Bool=false, 
+    loads3::String="",
+    saves3::String="",
+    horizon::String="",
+    logname::String="",
+    dependencies_mode::Bool=false,
+    return_errors::Bool=false)
+    
+    recipes_argument = length(recipes) > 0 ? `--recipes $(join(recipes, ','))` : ``
+    command_argument = length(command) > 0 ? `--command $command` : ``
+    verbose_argument = `--verbose $verbose`
+    output_argument = length(output_path) > 0 ? `--output $output_path` : ``
+    index_argument = length(index_path) > 0 ? `--index $index_path` : ``
+    csv_argument = csv ? `--csv` : ``
+    selected_argument = selected_outputs_only ? `--selected` : ``
+    magent_argument = magent ? `--magent` : ``
+    model_argument = length(model) > 0 ? `--model $(model)` : ``
+    avid_argument = avid ? `--avid` : ``
+    loads3_argument = length(loads3) > 0 ? `--loads3 $loads3` : ``
+    saves3_argument = length(saves3) > 0 ? `--saves3 $saves3` : ``
+    horizon_argument = length(horizon) > 0 ? `--horizon $horizon` : ``
+    logname_argument = length(logname) > 0 ? `--logname $logname` : ``
+    dependencies_mode_argument = dependencies_mode ? `--dependencies` : ``
+    return_errors_argument = return_errors ? `--return_errors` : ``
+
+    command = `$(psrio.path) $recipes_argument $command_argument $model_argument $verbose_argument $output_argument $index_argument $csv_argument $selected_argument $magent_argument $avid_argument $loads3_argument $saves3_argument $horizon_argument $logname_argument $dependencies_mode_argument $return_errors_argument $cases`
+    return Base.run(Base.ignorestatus(command));
+end
+
+end
