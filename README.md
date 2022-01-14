@@ -11,7 +11,7 @@ Interface Julia para o PSRIO.
 
 Para adicionar o PSRIO
 ```julia
-add git@github.com:psrenergy/PSRIO.jl.git
+add https://github.com/psrenergy/PSRIO.jl.git
 ```
 
 A forma recomendada usar a biblioteca colocar os comandos abaixo no início do projeto
