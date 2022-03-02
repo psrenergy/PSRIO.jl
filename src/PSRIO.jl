@@ -55,7 +55,7 @@ function run(psrio::Pointer, cases::Vector{String};
     index_path::String="", 
     selected_outputs_only::Bool=false, 
     magent::Bool=false,
-    avid::Bool=false, 
+    label::String="", 
     loads3::String="",
     saves3::String="",
     horizon::String="",
@@ -72,7 +72,7 @@ function run(psrio::Pointer, cases::Vector{String};
     selected_argument = selected_outputs_only ? `--selected` : ``
     magent_argument = magent ? `--magent` : ``
     model_argument = length(model) > 0 ? `--model $(model)` : ``
-    avid_argument = avid ? `--avid` : ``
+    label_argument = length(label) > 0 ? `--label $(label)` : ``
     loads3_argument = length(loads3) > 0 ? `--loads3 $loads3` : ``
     saves3_argument = length(saves3) > 0 ? `--saves3 $saves3` : ``
     horizon_argument = length(horizon) > 0 ? `--horizon $horizon` : ``
@@ -80,7 +80,7 @@ function run(psrio::Pointer, cases::Vector{String};
     dependencies_mode_argument = dependencies_mode ? `--dependencies` : ``
     return_errors_argument = return_errors ? `--return_errors` : ``
 
-    command = `$(psrio.path) $recipes_argument $command_argument $model_argument $verbose_argument $output_argument $index_argument $csv_argument $selected_argument $magent_argument $avid_argument $loads3_argument $saves3_argument $horizon_argument $logname_argument $dependencies_mode_argument $return_errors_argument $cases`
+    command = `$(psrio.path) $recipes_argument $command_argument $model_argument $verbose_argument $output_argument $index_argument $csv_argument $selected_argument $magent_argument $label_argument $loads3_argument $saves3_argument $horizon_argument $logname_argument $dependencies_mode_argument $return_errors_argument $cases`
     return Base.run(Base.ignorestatus(command));
 end
 
