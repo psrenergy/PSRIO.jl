@@ -61,7 +61,7 @@ function run(psrio::Pointer, cases::Vector{String};
     horizon::String="",
     logname::String="",
     dependencies_mode::Bool=false,
-    return_errors::Bool=false)
+    return_errors::Bool=true)
     
     recipes_argument = length(recipes) > 0 ? `--recipes $(join(recipes, ','))` : ``
     command_argument = length(command) > 0 ? `--command $command` : ``
