@@ -61,7 +61,8 @@ function run(psrio::Pointer, cases::Vector{String};
     horizon::String="",
     logname::String="",
     dependencies_mode::Bool=false,
-    return_errors::Bool=false)
+    return_errors::Bool=false,
+    ignore_hrbmap::Bool=false)
     
     recipes_argument = length(recipes) > 0 ? `--recipes $(join(recipes, ','))` : ``
     command_argument = length(command) > 0 ? `--command $command` : ``
@@ -79,8 +80,9 @@ function run(psrio::Pointer, cases::Vector{String};
     logname_argument = length(logname) > 0 ? `--logname $logname` : ``
     dependencies_mode_argument = dependencies_mode ? `--dependencies` : ``
     return_errors_argument = return_errors ? `--return_errors` : ``
+    ignore_hrbmap_argument = ignore_hrbmap ? `--ignore_hrbmap` : ``
 
-    command = `$(psrio.path) $recipes_argument $command_argument $model_argument $verbose_argument $output_argument $index_argument $csv_argument $selected_argument $magent_argument $label_argument $loads3_argument $saves3_argument $horizon_argument $logname_argument $dependencies_mode_argument $return_errors_argument $cases`
+    command = `$(psrio.path) $recipes_argument $command_argument $model_argument $verbose_argument $output_argument $index_argument $csv_argument $selected_argument $magent_argument $label_argument $loads3_argument $saves3_argument $horizon_argument $logname_argument $dependencies_mode_argument $return_errors_argument $ignore_hrbmap_argument $cases`
     return Base.run(Base.ignorestatus(command));
 end
 
