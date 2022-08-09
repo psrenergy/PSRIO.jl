@@ -27,3 +27,6 @@ Manifest.toml
 *.log
 *.bin
 *.hdr
+scripts/psrio-distribution/
+scripts/ArtifactsGenerator.jl/
+*.ver
