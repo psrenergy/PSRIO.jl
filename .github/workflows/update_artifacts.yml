@@ -1,0 +1,24 @@
+name: update artifacts
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [update_artifacts]
+
+jobs:
+  update_artifact:
+    name: Update PSRIO artifacts
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: GH Action directory
+        run: |
+          pwd
+
+      - name: Update artifacts
+        run: |
+          .\\scripts\\update_artifacts.bat ${{ secrets.AWS_KEY }} ${{ secrets.AWS_SECRET }}
+
+      - name: Commit the updated artifatcs
+        run: |
+          .\\scripts\\commit_new_artifact_to_master.bat
