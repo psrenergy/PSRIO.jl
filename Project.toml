@@ -1,6 +1,6 @@
 name = "PSRIO"
 uuid = "28cd61d8-bd87-4892-a734-3497164865b3"
-version = "0.14.0-beta"
+version = "0.14.0"
 
 [deps]
 LazyArtifacts = "4af54fe1-eca0-43a8-85a7-787d91b784e3"
