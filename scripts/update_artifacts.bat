@@ -18,7 +18,6 @@ echo "Cloning ArtifactsGenerator"
 git clone --depth=1 -b 0.2.0 "https://github.com/psrenergy/ArtifactsGenerator.jl.git" "%basepath%ArtifactsGenerator.jl"
 
 copy "%basepath%\ArtifactsGenerator.jl\Project.toml" "%basepath%Project.toml"
-copy "%basepath%\awsintegration\lib\lin64\libawsinterface.so" "%basepath%\psrclassesinterfacejulia\\"
 
 echo "Updating artifatcs"
 call %JULIA_161% --color=yes --project %basepath%update_artifacts.jl "%basepath%psrio-distribution" "psrio-distribution" "PSRIO" "%basepath%../Artifacts.toml" "%AWS_KEY%" "%SECRET_AWS_KEY%" "%last_commit%"
