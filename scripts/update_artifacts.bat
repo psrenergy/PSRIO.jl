@@ -19,7 +19,7 @@ git clone --depth=1 -b 0.2.0 "https://github.com/psrenergy/ArtifactsGenerator.jl
 
 copy "%basepath%\ArtifactsGenerator.jl\Project.toml" "%basepath%Project.toml"
 
-echo "Updating artifatcs"
+echo "Updating artifacts"
 call %JULIA_161% --color=yes --project %basepath%update_artifacts.jl "%basepath%psrio-distribution" "psrio-distribution" "PSRIO" "%basepath%../Artifacts.toml" "%AWS_KEY%" "%SECRET_AWS_KEY%" "%last_commit%"
 IF %ERRORLEVEL% NEQ 0 (
     EXIT 1
