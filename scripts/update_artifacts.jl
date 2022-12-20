@@ -3,8 +3,8 @@ Pkg.instantiate()
 
 include(joinpath("ArtifactsGenerator.jl", "src", "ArtifactsGenerator.jl"))
 
-@assert length(ARGS) == 7
 try
+    @assert length(ARGS) == 6
     ArtifactsGenerator.generate_artifacts(ARGS...)
 catch e
     throw(e)
