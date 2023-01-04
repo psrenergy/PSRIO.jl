@@ -59,7 +59,8 @@ function run(psrio::Pointer, cases::Vector{String};
     loads3::String="",
     saves3::String="",
     horizon::String="",
-    logname::String="",
+    log_name::String="",
+    log_append::Bool=false,
     dependencies_mode::Bool=false,
     ignore_hrbmap::Bool=false
 )
@@ -77,11 +78,12 @@ function run(psrio::Pointer, cases::Vector{String};
     loads3_argument = length(loads3) > 0 ? `--loads3 $loads3` : ``
     saves3_argument = length(saves3) > 0 ? `--saves3 $saves3` : ``
     horizon_argument = length(horizon) > 0 ? `--horizon $horizon` : ``
-    logname_argument = length(logname) > 0 ? `--logname $logname` : ``
+    log_name_argument = length(log_name) > 0 ? `--log_name $log_name` : ``
+    log_append_argument = log_append ? `--log_append` : ``
     dependencies_mode_argument = dependencies_mode ? `--dependencies` : ``
     ignore_hrbmap_argument = ignore_hrbmap ? `--ignore_hrbmap` : ``
 
-    command = `$(psrio.path) $recipes_argument $command_argument $model_argument $verbose_argument $output_argument $index_argument $csv_argument $selected_argument $magent_argument $label_argument $loads3_argument $saves3_argument $horizon_argument $logname_argument $dependencies_mode_argument $ignore_hrbmap_argument $cases`
+    command = `$(psrio.path) $recipes_argument $command_argument $model_argument $verbose_argument $output_argument $index_argument $csv_argument $selected_argument $magent_argument $label_argument $loads3_argument $saves3_argument $horizon_argument $log_name_argument $log_append_argument $dependencies_mode_argument $ignore_hrbmap_argument $cases`
     return Base.run(command);
 end
 
