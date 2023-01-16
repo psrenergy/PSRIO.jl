@@ -8,7 +8,7 @@ using Test
 
     path = "./data/Case01/"
 
-    com = """thermal = Thermal(); thermal.capacity:save("thermal_capacity")"""
+    com = """thermal = Thermal(); thermal.max_generation:save("thermal_max_generation")"""
     a = PSRIO.run(psrio, path, command = com, verbose = 3)
 
     # Everything runs
