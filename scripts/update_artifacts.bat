@@ -1,35 +1,42 @@
 @echo off
 
-set basepath=%~dp0
-set AWS_KEY=%1
-set SECRET_AWS_KEY=%2
+SET BASE_PATH=%~dp0
 
-echo "Cloning psrio-distribution"
-git clone --depth=1 -b develop "https://bitbucket.org/psr/psrio-distribution.git" "%basepath%psrio-distribution"
+SET AWS_KEY=%1
+SET SECRET_AWS_KEY=%2
 
-cd %basepath%psrio-distribution
+ECHO "Cleaning directory"
+RMDIR /S /Q "%BASE_PATH%\psrio-distribution"
+RMDIR /S /Q "%BASE_PATH%\ArtifactsGenerator.jl"
+DEL /q "%BASE_PATH%\Project.toml"
+DEL /q "%BASE_PATH%\Manifest.toml"
 
-copy %basepath%psrio-distribution\linux\psrio.ver %basepath%\psrio.ver
+ECHO "Cloning psrio-distribution"
+git clone --depth=1 -b develop "https://bitbucket.org/psr/psrio-distribution.git" "%BASE_PATH%psrio-distribution"
 
-echo "Cloning ArtifactsGenerator"
-git clone --depth=1 -b 0.3.0 "https://github.com/psrenergy/ArtifactsGenerator.jl.git" "%basepath%ArtifactsGenerator.jl"
+CD %BASE_PATH%psrio-distribution
 
-copy "%basepath%\ArtifactsGenerator.jl\Project.toml" "%basepath%Project.toml"
+COPY %BASE_PATH%psrio-distribution\linux\psrio.ver %BASE_PATH%\psrio.ver
 
-echo "Updating artifatcs"
-call %JULIA_161% --color=yes --project %basepath%update_artifacts.jl "%basepath%psrio-distribution" "psrio-distribution" "PSRIO" "%basepath%../Artifacts.toml" "%AWS_KEY%" "%SECRET_AWS_KEY%"
+ECHO "Cloning ArtifactsGenerator"
+git clone --depth=1 -b 0.3.0 "https://github.com/psrenergy/ArtifactsGenerator.jl.git" "%BASE_PATH%ArtifactsGenerator.jl"
+
+COPY "%BASE_PATH%\ArtifactsGenerator.jl\Project.toml" "%BASE_PATH%Project.toml"
+
+ECHO "Updating artifatcs"
+CALL %JULIA_161% --color=yes --project %BASE_PATH%update_artifacts.jl "%BASE_PATH%psrio-distribution" "psrio-distribution" "PSRIO" "%BASE_PATH%../Artifacts.toml" "%AWS_KEY%" "%SECRET_AWS_KEY%"
 IF %ERRORLEVEL% NEQ 0 (
     EXIT 1
 )
 
-echo "Cleaning directory"
-rmdir /S /Q "%basepath%\psrio-distribution"
-rmdir /S /Q "%basepath%\ArtifactsGenerator.jl"
-del /q "%basepath%\Project.toml"
-del /q "%basepath%\Manifest.toml"
+ECHO "Cleaning directory"
+RMDIR /S /Q "%BASE_PATH%\psrio-distribution"
+RMDIR /S /Q "%BASE_PATH%\ArtifactsGenerator.jl"
+DEL /q "%BASE_PATH%\Project.toml"
+DEL /q "%BASE_PATH%\Manifest.toml"
 
-echo "Testing package"
-%JULIA_161% --color=yes --project="%basepath%.." -e "import Pkg; Pkg.test()"
+ECHO "Testing package"
+%JULIA_161% --color=yes --project="%BASE_PATH%.." -e "import Pkg; Pkg.test()"
 IF %ERRORLEVEL% NEQ 0 (
     EXIT 1
 )
