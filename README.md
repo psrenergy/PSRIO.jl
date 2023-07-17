@@ -37,4 +37,4 @@ PSRIO.run(psrio, ["path do caso 1", "path do caso 2", "path do caso 3"]; model =
 
 Se a função `PSRIO.run` retornar um `IOError` com mensagens de "permission denied" tente rodar o comando `PSRIO.set_executable_chmod(0o755)` e rodar de novo o `PSRIO.run`
 
-Para mais informações sobre como fazer os scripts visite a [documentação](https://psrenergy.github.io/psrio-docs/)
+Para mais informações sobre como fazer os scripts visite a [documentação](psrio.psr-inc.com)
