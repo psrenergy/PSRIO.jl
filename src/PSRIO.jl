@@ -12,7 +12,7 @@ struct Pointer
     path::String
 
     function Pointer(psrio_distribution_path::String)
-        path = abspath(joinpath(psrio_distribution_path, Sys.iswindows() ? "psrio.exe" : "psrio.sh"))
+        path = abspath(joinpath(psrio_distribution_path, Sys.iswindows() ? "PSRIO.exe" : "psrio.sh"))
         return new(path)
     end
 
@@ -22,7 +22,7 @@ struct Pointer
 end
 
 function version(;path::AbstractString = path())
-    return strip(open(f->read(f, String), joinpath(path, "psrio.ver")))
+    return strip(open(f->read(f, String), joinpath(path, "PSRIO.ver")))
 end
 
 function path()
@@ -34,9 +34,9 @@ function create(;path::AbstractString = path())::Pointer
 end
 
 function set_executable_chmod(mode::Integer; path::AbstractString = path())
-    # Change permission of psrio.exe
+    # Change permission of PSRIO.exe
     if Sys.iswindows()
-        path_exec = joinpath(path, "psrio.exe")
+        path_exec = joinpath(path, "PSRIO.exe")
         chmod(path_exec, mode)
     else
         @warn("set_executable_chmod is not implemented for linux.")

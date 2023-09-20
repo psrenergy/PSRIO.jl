@@ -16,7 +16,7 @@ git clone --depth=1 -b develop "https://bitbucket.org/psr/psrio-distribution.git
 
 CD %BASE_PATH%psrio-distribution
 
-COPY %BASE_PATH%psrio-distribution\linux\psrio.ver %BASE_PATH%\psrio.ver
+COPY %BASE_PATH%psrio-distribution\linux\PSRIO.ver %BASE_PATH%\PSRIO.ver
 
 ECHO "Cloning ArtifactsGenerator"
 git clone --depth=1 -b 0.3.0 "https://github.com/psrenergy/ArtifactsGenerator.jl.git" "%BASE_PATH%ArtifactsGenerator.jl"
