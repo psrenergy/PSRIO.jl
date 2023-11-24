@@ -1,19 +1,19 @@
 [[PSRIO]]
 arch = "x86_64"
-git-tree-sha1 = "60dd1e05f46eed14f15e76ff0447aec85973a7a8"
+git-tree-sha1 = "fdec82dea6edea00be670bf5ee4d3c1be9218d5f"
 lazy = true
 os = "windows"
 
     [[PSRIO.download]]
-    sha256 = "a6227aeed0b27bed7fa79c1130b61d9da7e1b439b2ad3d0b4b99858806ecc1cb"
-    url = "https://julia-artifacts.s3.amazonaws.com/psrio-distribution/a6227-11a44/psrio-distribution-windows.tgz"
+    sha256 = "efaa90dd248914a0856b0d00e130a0c381a897600cc325fe1531567239015fdf"
+    url = "https://julia-artifacts.s3.amazonaws.com/psrio-distribution/efaa9-11823/psrio-distribution-windows.tgz"
 [[PSRIO]]
 arch = "x86_64"
-git-tree-sha1 = "3633e8f2da2bdff351dae145b130cbae791680c3"
+git-tree-sha1 = "33921f394a891b4bf2015344ed71fc5f75239ed3"
 lazy = true
 libc = "glibc"
 os = "linux"
 
     [[PSRIO.download]]
-    sha256 = "11a44564b176b76d3f0f418dc493bf5b8d8380a23e41792318096653d41b04f5"
-    url = "https://julia-artifacts.s3.amazonaws.com/psrio-distribution/a6227-11a44/psrio-distribution-linux.tgz"
+    sha256 = "1182309ac886a6bb4195a58beee3b0a03ff2cf2c8117b03b80ae6bc661c12660"
+    url = "https://julia-artifacts.s3.amazonaws.com/psrio-distribution/efaa9-11823/psrio-distribution-linux.tgz"
