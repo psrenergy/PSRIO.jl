@@ -1,6 +1,6 @@
 module PSRIO
 
-using LazyArtifacts
+using Artifacts
 
 import Base.run 
 
