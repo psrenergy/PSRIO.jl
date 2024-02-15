@@ -49,7 +49,8 @@ function run(psrio::Pointer, cases::Vector{String};
     recipes::Vector{String}=Vector{String}(), 
     command::AbstractString="", 
     model::AbstractString="", 
-    csv::Bool=false, 
+    csv::Bool=false,
+    leap_years::Bool=false, 
     verbose::Integer=1, 
     output_path::String="", 
     index_path::String="", 
@@ -71,6 +72,7 @@ function run(psrio::Pointer, cases::Vector{String};
     output_argument = length(output_path) > 0 ? `--output $output_path` : ``
     index_argument = length(index_path) > 0 ? `--index $index_path` : ``
     csv_argument = csv ? `--csv` : ``
+    leap_years_argument = leap_years ? `--leap_years` : ``
     selected_argument = selected_outputs_only ? `--selected` : ``
     magent_argument = magent ? `--magent` : ``
     model_argument = length(model) > 0 ? `--model $(model)` : ``
@@ -83,7 +85,7 @@ function run(psrio::Pointer, cases::Vector{String};
     dependencies_mode_argument = dependencies_mode ? `--dependencies` : ``
     ignore_hrbmap_argument = ignore_hrbmap ? `--ignore_hrbmap` : ``
 
-    command = `$(psrio.path) $recipes_argument $command_argument $model_argument $verbose_argument $output_argument $index_argument $csv_argument $selected_argument $magent_argument $label_argument $loads3_argument $saves3_argument $horizon_argument $log_name_argument $log_append_argument $dependencies_mode_argument $ignore_hrbmap_argument $cases`
+    command = `$(psrio.path) $recipes_argument $command_argument $model_argument $verbose_argument $output_argument $index_argument $csv_argument $leap_years_argument $selected_argument $magent_argument $label_argument $loads3_argument $saves3_argument $horizon_argument $log_name_argument $log_append_argument $dependencies_mode_argument $ignore_hrbmap_argument $cases`
     return Base.run(command);
 end
 
