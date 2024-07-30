@@ -63,7 +63,8 @@ function run(psrio::Pointer, cases::Vector{String};
     log_name::String="",
     log_append::Bool=false,
     dependencies_mode::Bool=false,
-    ignore_hrbmap::Bool=false
+    ignore_hrbmap::Bool=false,
+    skip_typical_days_validation::Bool=true
 )
     
     recipes_argument = length(recipes) > 0 ? `--recipes $(join(recipes, ','))` : ``
@@ -84,8 +85,9 @@ function run(psrio::Pointer, cases::Vector{String};
     log_append_argument = log_append ? `--log_append` : ``
     dependencies_mode_argument = dependencies_mode ? `--dependencies` : ``
     ignore_hrbmap_argument = ignore_hrbmap ? `--ignore_hrbmap` : ``
+    skip_typical_days_validation_argument = skip_typical_days_validation ? `--skip_typical_days_validation` : ``
 
-    command = `$(psrio.path) $recipes_argument $command_argument $model_argument $verbose_argument $output_argument $index_argument $csv_argument $leap_years_argument $selected_argument $magent_argument $label_argument $loads3_argument $saves3_argument $horizon_argument $log_name_argument $log_append_argument $dependencies_mode_argument $ignore_hrbmap_argument $cases`
+    command = `$(psrio.path) $recipes_argument $command_argument $model_argument $verbose_argument $output_argument $index_argument $csv_argument $leap_years_argument $selected_argument $magent_argument $label_argument $loads3_argument $saves3_argument $horizon_argument $log_name_argument $log_append_argument $dependencies_mode_argument $ignore_hrbmap_argument $skip_typical_days_validation_argument $cases`
     return Base.run(command);
 end
 
