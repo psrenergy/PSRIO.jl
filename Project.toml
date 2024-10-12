@@ -1,6 +1,6 @@
 name = "PSRIO"
 uuid = "28cd61d8-bd87-4892-a734-3497164865b3"
-version = "1.2.0-rc1"
+version = "1.2.0-beta"
 
 [deps]
 Artifacts = "56f22d72-fd6d-98f1-02f0-08ddc0907c33"
