@@ -12,7 +12,7 @@ DEL /q "%BASE_PATH%\Project.toml"
 DEL /q "%BASE_PATH%\Manifest.toml"
 
 ECHO "Cloning psrio-distribution"
-git clone --depth=1 -b test_load_save_genesys "https://bitbucket.org/psr/psrio-distribution.git" "%BASE_PATH%psrio-distribution"
+git clone --depth=1 -b genesys_load_save_fix "https://bitbucket.org/psr/psrio-distribution.git" "%BASE_PATH%psrio-distribution"
 
 CD %BASE_PATH%psrio-distribution
 
@@ -32,7 +32,7 @@ RMDIR /S /Q "%BASE_PATH%\psrio-distribution"
 RMDIR /S /Q "%BASE_PATH%\ArtifactsGenerator.jl"
 
 ECHO "Testing package"
-%JULIA_166% --color=yes --project="%BASE_PATH%.." -e "import Pkg; Pkg.test()"
+%JULIA_1107% --color=yes --project="%BASE_PATH%.." -e "import Pkg; Pkg.test()"
 IF %ERRORLEVEL% NEQ 0 (
     EXIT 1
 )
