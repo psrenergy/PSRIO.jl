@@ -12,7 +12,7 @@ DEL /q "%BASE_PATH%\Project.toml"
 DEL /q "%BASE_PATH%\Manifest.toml"
 
 ECHO "Cloning psrio-distribution"
-git clone --depth=1 -b develop "https://bitbucket.org/psr/psrio-distribution.git" "%BASE_PATH%psrio-distribution"
+git clone --depth=1 -b PSRIO_GENESYS "https://bitbucket.org/psr/psrio-distribution.git" "%BASE_PATH%psrio-distribution"
 
 CD %BASE_PATH%psrio-distribution
 
