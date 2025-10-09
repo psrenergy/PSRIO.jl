@@ -7,4 +7,4 @@ git config --local user.name "GithubPSRIOUpdater"
 git add %basepath%..\Artifacts.toml 
 git add %basepath%..\Project.toml 
 git commit -m "[PSRIO update] version %psrio_version%"
-git push origin master
+git push origin PSRIO_GENESYS
