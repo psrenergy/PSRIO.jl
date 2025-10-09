@@ -32,7 +32,7 @@ RMDIR /S /Q "%BASE_PATH%\psrio-distribution"
 RMDIR /S /Q "%BASE_PATH%\ArtifactsGenerator.jl"
 
 ECHO "Testing package"
-%JULIA_1107% --color=yes --project="%BASE_PATH%.." -e "import Pkg; Pkg.test()"
+%JULIA_166% --color=yes --project="%BASE_PATH%.." -e "import Pkg; Pkg.test()"
 IF %ERRORLEVEL% NEQ 0 (
     EXIT 1
 )
