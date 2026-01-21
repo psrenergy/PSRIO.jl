@@ -64,6 +64,7 @@ git clone --depth=1 -b 0.5.0 \
 # ---------------------------
 # Update artifacts
 # ---------------------------
+chmod +x "${BASE_PATH}psrio-distribution/windows/PSRIO.exe"
 
 echo "[INFO] Updating artifacts..."
 julia +1.6.1 --color=yes \
