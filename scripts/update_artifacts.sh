@@ -57,7 +57,7 @@ cp "${BASE_PATH}psrio-distribution/linux/PSRIO.ver" \
 # ---------------------------
 
 echo "[INFO] Cloning ArtifactsGenerator..."
-git clone --depth=1 -b 0.5.0 \
+git clone --depth=1 -b 0.7.0 \
   "https://github.com/psrenergy/ArtifactsGenerator.jl.git" \
   "${BASE_PATH}ArtifactsGenerator.jl"
 
