@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+h#!/usr/bin/env bash
 set -euo pipefail
 
 # Path to the directory where this script is located
@@ -8,8 +8,6 @@ basepath="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 psrio_version="$(cat "$basepath/PSRIO.ver")"
 
 git fetch
-git checkout develop
-
 # Configure local git username
 git config --local user.name "GithubPSRIOUpdater"
 
