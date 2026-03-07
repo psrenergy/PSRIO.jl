@@ -10,6 +10,7 @@ BASE_PATH="$(cd "$(dirname "$0")" && pwd)/"
 
 AWS_KEY="${1:-}"
 SECRET_AWS_KEY="${2:-}"
+DIST_BRANCH="${3:-develop}"
 
 if [ -z "$AWS_KEY" ] || [ -z "$SECRET_AWS_KEY" ]; then
   echo "Usage: $0 <AWS_KEY> <SECRET_AWS_KEY>"
@@ -44,8 +45,8 @@ rm -f "${BASE_PATH}Manifest.toml"
 # Clone psrio-distribution
 # ---------------------------
 
-echo "[INFO] Cloning psrio-distribution..."
-git clone --depth=1 -b develop \
+echo "[INFO] Cloning psrio-distribution (branch: $DIST_BRANCH)..."
+git clone --depth=1 -b "$DIST_BRANCH" \
   "https://bitbucket.org/psr/psrio-distribution.git" \
   "${BASE_PATH}psrio-distribution"
 
