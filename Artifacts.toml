@@ -4,8 +4,8 @@ git-tree-sha1 = "648e371e366ee746c77ec5213d6b701e2bdd93b8"
 os = "windows"
 
     [[PSRIO.download]]
-    sha256 = "dbde7cfc120b035ca87d33abf509d6e4b215ab3c1718510f5208a5fa5a3112e8"
-    url = "https://julia-artifacts.s3.amazonaws.com/psrio-distribution/5a32c-7f556-5b30e-dbde7/psrio-distribution-windows.tgz"
+    sha256 = "6ee8ab48122df2112b92b514f558365e6130523f955cf2ec4b37263f333cda54"
+    url = "https://julia-artifacts.s3.amazonaws.com/psrio-distribution/d48f1-ba561-9b04b-6ee8a/psrio-distribution-windows.tgz"
 [[PSRIO]]
 arch = "x86_64"
 git-tree-sha1 = "970bd38b38d36284751067783dfe5d313b9c1aed"
@@ -13,8 +13,8 @@ libc = "glibc"
 os = "linux"
 
     [[PSRIO.download]]
-    sha256 = "5b30e204f1857d95a3af749df06417a3678253eb33157c27b2078477929587a0"
-    url = "https://julia-artifacts.s3.amazonaws.com/psrio-distribution/5a32c-7f556-5b30e-dbde7/psrio-distribution-linux.tgz"
+    sha256 = "9b04b73c96850d0f8d887c3e4fbfb1f52c922efb739cf8778b09b5b009d7d914"
+    url = "https://julia-artifacts.s3.amazonaws.com/psrio-distribution/d48f1-ba561-9b04b-6ee8a/psrio-distribution-linux.tgz"
 [[PSRIO]]
 arch = "x86_64"
 cxxstring_abi = "cxx11"
@@ -24,13 +24,13 @@ libgfortran_version = "5.0.0"
 os = "linux"
 
     [[PSRIO.download]]
-    sha256 = "5b30e204f1857d95a3af749df06417a3678253eb33157c27b2078477929587a0"
-    url = "https://julia-artifacts.s3.amazonaws.com/psrio-distribution/5a32c-7f556-5b30e-dbde7/psrio-distribution-linux.tgz"
+    sha256 = "9b04b73c96850d0f8d887c3e4fbfb1f52c922efb739cf8778b09b5b009d7d914"
+    url = "https://julia-artifacts.s3.amazonaws.com/psrio-distribution/d48f1-ba561-9b04b-6ee8a/psrio-distribution-linux.tgz"
 [[PSRIO]]
 arch = "i686"
 git-tree-sha1 = "648e371e366ee746c77ec5213d6b701e2bdd93b8"
 os = "windows"
 
     [[PSRIO.download]]
-    sha256 = "dbde7cfc120b035ca87d33abf509d6e4b215ab3c1718510f5208a5fa5a3112e8"
-    url = "https://julia-artifacts.s3.amazonaws.com/psrio-distribution/5a32c-7f556-5b30e-dbde7/psrio-distribution-windows.tgz"
+    sha256 = "6ee8ab48122df2112b92b514f558365e6130523f955cf2ec4b37263f333cda54"
+    url = "https://julia-artifacts.s3.amazonaws.com/psrio-distribution/d48f1-ba561-9b04b-6ee8a/psrio-distribution-windows.tgz"
