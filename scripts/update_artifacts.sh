@@ -8,11 +8,14 @@ set -euo pipefail
 # Base directory where this script is located
 BASE_PATH="$(cd "$(dirname "$0")" && pwd)/"
 
-AWS_KEY="${1:-}"
-SECRET_AWS_KEY="${2:-}"
+DIST_BRANCH="${1:-develop}"
 
-if [ -z "$AWS_KEY" ] || [ -z "$SECRET_AWS_KEY" ]; then
-  echo "Usage: $0 <AWS_KEY> <SECRET_AWS_KEY>"
+# AWS credentials are taken from the environment (default credential provider chain).
+# In CI they are injected by `aws-actions/configure-aws-credentials` (assume role),
+# which exports AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY and AWS_SESSION_TOKEN.
+if [ -z "${AWS_ACCESS_KEY_ID:-}" ] || [ -z "${AWS_SECRET_ACCESS_KEY:-}" ]; then
+  echo "ERROR: AWS credentials not found in the environment."
+  echo "Expected AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY (e.g. from an assumed role)."
   exit 1
 fi
 
@@ -44,8 +47,8 @@ rm -f "${BASE_PATH}Manifest.toml"
 # Clone psrio-distribution
 # ---------------------------
 
-echo "[INFO] Cloning psrio-distribution..."
-git clone --depth=1 -b develop \
+echo "[INFO] Cloning psrio-distribution (branch: $DIST_BRANCH)..."
+git clone --depth=1 -b "$DIST_BRANCH" \
   "https://bitbucket.org/psr/psrio-distribution.git" \
   "${BASE_PATH}psrio-distribution"
 
@@ -57,7 +60,7 @@ cp "${BASE_PATH}psrio-distribution/linux/PSRIO.ver" \
 # ---------------------------
 
 echo "[INFO] Cloning ArtifactsGenerator..."
-git clone --depth=1 -b 0.7.0 \
+git clone --depth=1 -b 0.8.0 \
   "https://github.com/psrenergy/ArtifactsGenerator.jl.git" \
   "${BASE_PATH}ArtifactsGenerator.jl"
 
@@ -72,8 +75,7 @@ julia +1.6.1 --color=yes \
   "${BASE_PATH}update_artifacts.jl" \
   "${BASE_PATH}psrio-distribution" \
   "psrio-distribution" "PSRIO" \
-  "${BASE_PATH}../Artifacts.toml" \
-  "$AWS_KEY" "$SECRET_AWS_KEY"
+  "${BASE_PATH}../Artifacts.toml"
 
 # ---------------------------
 # Cleanup after build
