@@ -1,22 +1,20 @@
 #!/usr/bin/env bash
 set -euo pipefail
-
 # ---------------------------
 # Environment preparation
 # ---------------------------
-
 # Base directory where this script is located
 BASE_PATH="$(cd "$(dirname "$0")" && pwd)/"
-
 DIST_BRANCH="${1:-develop}"
 
-# AWS credentials are taken from the environment (default credential provider chain).
-# In CI they are injected by `aws-actions/configure-aws-credentials` (assume role),
-# which exports AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY and AWS_SESSION_TOKEN.
-if [ -z "${AWS_ACCESS_KEY_ID:-}" ] || [ -z "${AWS_SECRET_ACCESS_KEY:-}" ]; then
-  echo "ERROR: AWS credentials not found in the environment."
-  echo "Expected AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY (e.g. from an assumed role)."
-  exit 1
+# AWS credentials are optional. If passed as arguments ($2 = access key id,
+# $3 = secret access key, $4 = optional session token), they are exported.
+# Otherwise the script continues and relies on the default credential provider
+# chain (env vars, instance/task IAM role, etc.).
+if [ -n "${2:-}" ] && [ -n "${3:-}" ]; then
+  export AWS_ACCESS_KEY_ID="$2"
+  export AWS_SECRET_ACCESS_KEY="$3"
+  [ -n "${4:-}" ] && export AWS_SESSION_TOKEN="$4"
 fi
 
 # Install juliaup if not found
