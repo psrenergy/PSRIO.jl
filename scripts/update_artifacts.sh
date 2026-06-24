@@ -49,7 +49,7 @@ rm -f "${BASE_PATH}Manifest.toml"
 
 echo "[INFO] Cloning psrio-distribution (branch: $DIST_BRANCH)..."
 git clone --depth=1 -b "$DIST_BRANCH" \
-  "https://bitbucket.org/psr/psrio-distribution.git" \
+  "https://github.com/psrenergy/psrio-distribution.git" \
   "${BASE_PATH}psrio-distribution"
 
 cp "${BASE_PATH}psrio-distribution/linux/PSRIO.ver" \
