@@ -67,7 +67,7 @@ function run(psrio::Pointer, cases::Vector{String};
     skip_typical_days_validation::Bool=true
 )
     
-    recipes_argument = length(recipes) > 0 ? `--recipes $(join(recipes, ','))` : ``
+    recipes_argument = length(recipes) > 0 ? `--recipe $(join(recipes, ','))` : ``
     command_argument = length(command) > 0 ? `--command $command` : ``
     verbose_argument = `--verbose $verbose`
     output_argument = length(output_path) > 0 ? `--output $output_path` : ``
